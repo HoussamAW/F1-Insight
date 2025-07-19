@@ -15,6 +15,9 @@ struct EcuriesModel: Identifiable {
     var name: String // nom de l'ecurie
     var logo: String // logo de l'ecurie
     var carModel: String //image de la voiture
+    var pilot1: String //image des pilotes
+    var pilot2: String //image des pilotes
+    
 }
 
 //struct pour le menu principal
