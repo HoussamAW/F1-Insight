@@ -9,18 +9,18 @@ import Foundation
 import SwiftUI
 
 
-//struct pour les diffentes ecuries
+//struct for the different teams
 struct EcuriesModel: Identifiable {
     var id =  UUID()
-    var name: String // nom de l'ecurie
-    var logo: String // logo de l'ecurie
-    var carModel: String //image de la voiture
-    var pilot1: String //image des pilotes
-    var pilot2: String //image des pilotes
+    var name: String // name of the team
+    var logo: String // logo of the team
+    var carModel: String //image of the car
+    var pilot1: String //image of driver number 1 of the team
+    var pilot2: String //image of driver number 2 of the team
     
 }
 
-//struct pour le menu principal
+//struct for the main menu
 struct Items: Identifiable {
     var id = UUID()
     var item: Array<Any>
@@ -28,4 +28,12 @@ struct Items: Identifiable {
     var destination: AnyView
 }
 
+
+
+//struct for displaying upcoming races
+struct Race: Identifiable {
+    let id = UUID()
+    let name: String
+    let date: Date
+}
 

@@ -7,11 +7,21 @@
 
 import SwiftUI
 
+
 @main
 struct F1_InsightApp: App {
+    @State private var showDice = false
     var body: some Scene {
-        WindowGroup {
+
+        // Main window
+        WindowGroup(id: "main") {
            ContentView()
         }
+
+        // Second window for 3DObject
+        WindowGroup(id: "car-detail") {
+            RealityContentView(showDice: $showDice)
+        }.windowStyle(.plain)
+       
     }
 }

@@ -8,31 +8,53 @@
 import SwiftUI
 
 struct HomeView: View {
-    @State private var race = "Belgium"
-    @State private var racingDate = " 25 - 27 July"
     @State private var currentDate = Date()
     
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     let items = [
         Items(item: [1], menuName: "Ecurie", destination: AnyView(EcuriesView())),
-        Items(item: [2], menuName: "Pilots", destination: AnyView(EcuriesView())),
-        Items(item: [3], menuName: "News",   destination: AnyView(EcuriesView()))
+        Items(item: [2], menuName: "Pilots", destination: AnyView(PilotsView())),
+        Items(item: [3], menuName: "News", destination: AnyView(EcuriesView()))
     ]
+    
+    let races: [Race] = [
+            Race(name: "Belgium", date: Self.makeDate("2025-08-27")),
+            Race(name: "Brazil", date: Self.makeDate("2025-09-30")),
+            Race(name: "Abu Dhabi", date: Self.makeDate("2025-11-23"))
+        ]
+    
+    var nextRace: Race? {
+        races
+            .filter {
+                $0.date >= Date()
+            }
+            .sorted {
+                $0.date < $1.date
+            }
+            .first
+    }
+        
+        
 
     let columns = [
         GridItem(.fixed(350), spacing: 30),
         GridItem(.fixed(350), spacing: 30),
         GridItem(.fixed(350), spacing: 30)
     ]
-    
+    //For the time of day
     let dateFormatter: DateFormatter = {
             let formatter = DateFormatter()
             formatter.dateFormat = "dd/MM - HH:mm"
             return formatter
         }()
-    
-   
+    //For the date of the next races
+    let raceDateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "us_US")
+        formatter.dateFormat = "EEEE d MMMM yyyy"
+        return formatter
+    }()
     
     var body: some View {
         NavigationStack {
@@ -57,13 +79,15 @@ struct HomeView: View {
                     Spacer()
                     Text("Next Race: ")
                         .italic()
-                    
-                    Text("\(race)")
-                        .bold()
-                     
-                    
-                    Text("\(racingDate)")
-                        .italic()
+                    if let race = nextRace {
+                        Text("\(race.name)")
+                            .bold()
+                        
+                        Text(raceDateFormatter.string(from: race.date))
+                            .italic()
+                    } else {
+                        Text("Season Finished")
+                    }
                     
              Spacer()
                     Image("TagHeuerLogo")
@@ -76,32 +100,33 @@ struct HomeView: View {
                                 .onReceive(timer) { input in
                                     currentDate = input
                                 }
-                     
-            
+
                     Spacer()
                 }
                 
                 Divider()
-            
-                LazyVGrid(columns: columns, spacing: 30) {
-                    ForEach(items) { item in
-                        NavigationLink {
-                            item.destination
-                        } label: {
-                            ZStack {
-                                VStack {
-                                    Text(item.menuName)
-                                        .bold()
-                                    RoundedRectangle(cornerRadius: 20)
-                                        .foregroundStyle(.ultraThinMaterial)
-                                        .frame(height: 200)
-                                        .shadow(radius: 50)
+               
+                        LazyVGrid(columns: columns, spacing: 30) {
+                            ForEach(items) { item in
+                                NavigationLink {
+                                    item.destination
+                                } label: {
+                                    ZStack {
+                                        VStack {
+                                            Text(item.menuName)
+                                                .bold()
+                                            RoundedRectangle(cornerRadius: 20)
+                                                .foregroundStyle(.ultraThinMaterial)
+                                                .frame(height: 200)
+                                                .shadow(radius: 50)
+                                        }
+                                    }
                                 }
+                                .buttonStyle(.plain)
                             }
-                        }
-                        .buttonStyle(.plain)
-                    }
-                }.offset(y:80)
+                        }.offset(y:80)
+                
+       
                 
                 Spacer()
                 
@@ -110,6 +135,14 @@ struct HomeView: View {
             }
             .padding()
         }
+        
+        
+    }
+    static func makeDate(_ string: String) -> Date {
+        let formatter = DateFormatter()
+           formatter.dateFormat = "yyyy-MM-dd"
+           formatter.timeZone = .current
+           return formatter.date(from: string) ?? Date()
     }
 }
 

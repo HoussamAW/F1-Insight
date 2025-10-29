@@ -6,6 +6,9 @@
 //
 
 import SwiftUI
+import RealityKit
+import RealityKitContent
+
 struct EcuriesView:View {
     let ecurieLogo = [
         EcuriesModel(name: "RedBull Racing", logo: "RedBullRacing", carModel: "RedbullCar", pilot1: "", pilot2: ""),
@@ -18,12 +21,14 @@ struct EcuriesView:View {
         EcuriesModel(name: "Haas", logo: "Haas", carModel: "HaasCar", pilot1: "", pilot2: ""),
         EcuriesModel(name: "Alpine", logo: "Alpine", carModel: "AlpineCar", pilot1: "", pilot2: ""),
         EcuriesModel(name: "Racing Bulls", logo: "RacingBulls", carModel: "RacingBullCar", pilot1: "", pilot2: "")]
+    
     @State private var img = "RedbullCar"
     @State private var logos = "RedBullRacing"
     @State private var ecurieName = "RedBull Racing"
     @State private var pilotImg1 = ""
     @State private var pilotImg2 = ""
     
+    @Environment(\.openWindow) private var openWindow
     var body: some View {
         VStack {
                 Spacer()
@@ -38,11 +43,15 @@ struct EcuriesView:View {
                         .font(.title3)
                         .italic()
                 }.offset(x:200)
+                Button {
+                    openWindow(id: "car-detail")
+                } label: {
+                    Image(img)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(maxWidth: .infinity, maxHeight: 300)
+                }.buttonStyle(.borderless)
                 
-                Image(img)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(maxWidth: .infinity, maxHeight: 300)
                 
                 HStack {
                   
