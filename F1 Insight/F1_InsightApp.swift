@@ -22,6 +22,13 @@ struct F1_InsightApp: App {
         WindowGroup(id: "car-detail") {
             RealityContentView(showDice: $showDice)
         }.windowStyle(.plain)
+        
+        WindowGroup(id: "car-stats") {
+            CarStatsView()
+                
+        }
+            
+            
        
     }
 }

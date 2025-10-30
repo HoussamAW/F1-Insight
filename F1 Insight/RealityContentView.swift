@@ -13,7 +13,7 @@ struct RealityContentView: View {
     @State private var rotationY: Double = 0
     @State private var lastRotationX: Double = 0
     @State private var lastRotationY: Double = 0
-
+    @Environment(\.openWindow) private var openWindows
     @State private var scale: CGFloat = 1.0
     @State private var lastScale: CGFloat = 1.0
 
@@ -38,19 +38,24 @@ struct RealityContentView: View {
             }
 
         ZStack {
-            Model3D(named: "dice") { model in
-                model
-                    .resizable()
-                    .scaledToFit()
-            } placeholder: {
-                ProgressView()
+            Button {
+                openWindows(id: "car-stats")
+            } label: {
+                Model3D(named: "dice") { model in
+                    model
+                        .resizable()
+                        .scaledToFit()
+                } placeholder: {
+                    ProgressView()
+                }
+                .frame(width: 200, height: 200)
+                .rotation3DEffect(.degrees(rotationX), axis: (x: 1, y: 0, z: 0))
+                .rotation3DEffect(.degrees(rotationY), axis: (x: 0, y: 1, z: 0))
+                .scaleEffect(scale)
+                .gesture(
+                    rotateDrag.simultaneously(with: pinchZoom))
             }
-            .frame(width: 200, height: 200)
-            .rotation3DEffect(.degrees(rotationX), axis: (x: 1, y: 0, z: 0))
-            .rotation3DEffect(.degrees(rotationY), axis: (x: 0, y: 1, z: 0))
-            .scaleEffect(scale)
-            .gesture(
-                rotateDrag.simultaneously(with: pinchZoom))
+            
             
         }.padding(.bottom,70)
             .frame(width: 600,height: 600)
