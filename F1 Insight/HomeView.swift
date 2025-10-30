@@ -19,9 +19,9 @@ struct HomeView: View {
     ]
     
     let races: [Race] = [
-            Race(name: "Belgium", date: Self.makeDate("2025-08-27")),
-            Race(name: "Brazil", date: Self.makeDate("2025-09-30")),
-            Race(name: "Abu Dhabi", date: Self.makeDate("2025-11-23"))
+            Race(name: "Brazil", date: Self.makeDate("2025-11-09")),
+            Race(name: "Las Vegas", date: Self.makeDate("2025-11-22")),
+            Race(name: "Qatar", date: Self.makeDate("2025-11-30"))
         ]
     
     var nextRace: Race? {

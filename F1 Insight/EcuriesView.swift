@@ -50,7 +50,7 @@ struct EcuriesView:View {
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(maxWidth: .infinity, maxHeight: 300)
-                }.buttonStyle(.borderless)
+                }.buttonStyle(.plain)
                 
                 
                 HStack {

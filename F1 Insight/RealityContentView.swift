@@ -54,11 +54,12 @@ struct RealityContentView: View {
                 .scaleEffect(scale)
                 .gesture(
                     rotateDrag.simultaneously(with: pinchZoom))
-            }
+            }.buttonStyle(.plain)
             
             
         }.padding(.bottom,70)
-            .frame(width: 600,height: 600)
+            .frame(width: 300,height: 300)
+           
        
     }
 }

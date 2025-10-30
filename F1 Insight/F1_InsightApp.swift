@@ -23,10 +23,13 @@ struct F1_InsightApp: App {
             RealityContentView(showDice: $showDice)
         }.windowStyle(.plain)
         
+        // Third window for Stats
         WindowGroup(id: "car-stats") {
             CarStatsView()
-                
-        }
+                .fixedSize()
+               
+        }.defaultSize(width: 250, height: 300)
+          
             
             
        

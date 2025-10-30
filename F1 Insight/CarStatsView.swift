@@ -14,18 +14,12 @@ struct CarStatsView: View {
                 Text("Stats")
                    
             Divider()
-          
-                RoundedRectangle(cornerRadius: 15)
-                    .fill(.ultraThinMaterial)
-                    .shadow(radius: 5)
-                
+            
                 VStack(alignment: .leading, spacing: 8) {
                     Text("Red Bull Racing")
                         .font(.headline)
                         .foregroundStyle(.red)
-                    
-                   
-                    
+
                     Group {
                         HStack {
                             Text("Points:")
@@ -67,8 +61,8 @@ struct CarStatsView: View {
                 }
                 .padding()
             }
-            .frame(width: 250, height: 230)
-        }.frame(width: 250,height: 300)
+    
+        }
     }
 }
 
