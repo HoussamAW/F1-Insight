@@ -41,7 +41,7 @@ struct RealityContentView: View {
             Button {
                 openWindows(id: "car-stats")
             } label: {
-                Model3D(named: "dice") { model in
+                Model3D(named: "F1") { model in
                     model
                         .resizable()
                         .scaledToFit()
