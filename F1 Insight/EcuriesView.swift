@@ -10,24 +10,11 @@ import RealityKit
 import RealityKitContent
 
 struct EcuriesView:View {
-    let ecurieLogo = [
-        EcuriesModel(name: "RedBull Racing", logo: "RedBullRacing", carModel: "RedbullCar", pilot1: "", pilot2: ""),
-        EcuriesModel(name: "Ferrari", logo: "Ferrari", carModel: "FerrariCar", pilot1: "", pilot2: ""),
-        EcuriesModel(name: "Kick Sauber", logo: "KickSauber", carModel: "KickSauberCar", pilot1: "", pilot2: ""),
-        EcuriesModel(name: "Mclaren", logo: "Mclaren", carModel: "MclarenCar", pilot1: "", pilot2: ""),
-        EcuriesModel(name: "Williams", logo: "Williams", carModel: "WilliamCar", pilot1: "", pilot2: ""),
-        EcuriesModel(name: "Mercedes", logo: "Mercedes", carModel: "MercedesCar", pilot1: "", pilot2: ""),
-        EcuriesModel(name: "Aston Martin", logo: "AstonMartin", carModel: "AstonMartinCar", pilot1: "", pilot2: ""),
-        EcuriesModel(name: "Haas", logo: "Haas", carModel: "HaasCar", pilot1: "", pilot2: ""),
-        EcuriesModel(name: "Alpine", logo: "Alpine", carModel: "AlpineCar", pilot1: "", pilot2: ""),
-        EcuriesModel(name: "Racing Bulls", logo: "RacingBulls", carModel: "RacingBullCar", pilot1: "", pilot2: "")]
-    
     @State private var img = "RedbullCar"
     @State private var logos = "RedBullRacing"
     @State private var ecurieName = "RedBull Racing"
     @State private var pilotImg1 = ""
     @State private var pilotImg2 = ""
-    
     @Environment(\.openWindow) private var openWindow
     var body: some View {
         VStack {
@@ -51,6 +38,7 @@ struct EcuriesView:View {
                         .aspectRatio(contentMode: .fit)
                         .frame(maxWidth: .infinity, maxHeight: 300)
                 }.buttonStyle(.plain)
+                
                 
                 
                 HStack {
