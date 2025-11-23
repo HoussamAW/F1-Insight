@@ -12,11 +12,11 @@ import SwiftUI
 //struct for the different teams
 struct EcuriesModel: Identifiable {
     var id =  UUID()
-    var name: String // name of the team
-    var logo: String // logo of the team
-    var carModel: String //image of the car
-    var pilot1: String //image of driver number 1 of the team
-    var pilot2: String //image of driver number 2 of the team
+    var name: String
+    var logo: String
+    var carModel: String
+    var pilot1: String
+    var pilot2: String
     
 }
 
@@ -29,7 +29,14 @@ struct Items: Identifiable {
     var destination: AnyView
 }
 
-
+//struct to displaying the races replay
+struct RaceReplay: Identifiable {
+    let id = UUID()
+    var raceModel: String
+    var name: String
+    var destination: AnyView
+    var idWindow: String
+}
 
 //struct for displaying upcoming races
 struct Race: Identifiable {
@@ -40,7 +47,7 @@ struct Race: Identifiable {
 
 let items = [
     Items(item: [1], images: "person.3.fill", menuName: "Teams", destination: AnyView(EcuriesView())),
-    Items(item: [2], images: "flag.checkered.2.crossed", menuName: "Races", destination: AnyView(PilotsView())),
+    Items(item: [2], images: "flag.checkered.2.crossed", menuName: "Races", destination: AnyView(RacesView())),
     Items(item: [3], images: "chart.xyaxis.line", menuName: "Insights", destination: AnyView(EcuriesView()))
 ]
 
@@ -65,9 +72,28 @@ let ecurieLogo = [
     
     ]
 
+let raceReplay = [
+    RaceReplay(raceModel: "melbourne", name: "Melbourne", destination: AnyView(ReplayView()), idWindow: "replayView"),
+    RaceReplay(raceModel: "shanghai", name: "Shanghai", destination: AnyView(ReplayView()), idWindow: "replayView"),
+    RaceReplay(raceModel: "suzuka", name: "Suzuka", destination: AnyView(ReplayView()), idWindow: "replayView"),
+    RaceReplay(raceModel: "bahrain", name: "Bahrain", destination: AnyView(ReplayView()), idWindow: "replayView"),
+    RaceReplay(raceModel: "jeddah", name: "Jeddas", destination: AnyView(ReplayView()), idWindow: "replayView"),
+    RaceReplay(raceModel: "miami", name: "Miami", destination: AnyView(ReplayView()), idWindow: "replayView")
+    
+]
+
+let columns = [
+    GridItem(.fixed(350), spacing: 30),
+    GridItem(.fixed(350), spacing: 30),
+    GridItem(.fixed(350), spacing: 30)
+]
+
 func makeDate(_ string: String) -> Date {
     let formatter = DateFormatter()
        formatter.dateFormat = "yyyy-MM-dd"
        formatter.timeZone = .current
        return formatter.date(from: string) ?? Date()
 }
+
+
+

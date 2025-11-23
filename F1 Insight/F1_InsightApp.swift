@@ -29,6 +29,11 @@ struct F1_InsightApp: App {
                 .fixedSize()
                
         }.defaultSize(width: 250, height: 300)
+        
+        // window for Replay
+        WindowGroup(id: "replayView") {
+           ReplayView()
+        }.windowStyle(.plain)
           
             
             
