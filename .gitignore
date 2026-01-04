@@ -1,4 +1,8 @@
+# macOS
 .DS_Store
+**/.DS_Store
+
+# Xcode (user-specific)
 xcuserdata/
-*.xcuserstate.DS_Store
+*.xcuserstate
 
