@@ -9,10 +9,8 @@ import SwiftUI
 
 struct HomeView: View {
     @State private var currentDate = Date()
-    
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-    
-    var nextRace: Race? {
+    var nextRace: RaceModel? {
         races
             .filter {
                 $0.date >= Date()
@@ -22,16 +20,12 @@ struct HomeView: View {
             }
             .first
     }
-    
-   
-    
     //For the time of day
     let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd/MM - HH:mm"
         return formatter
     }()
-    
     //For the date of the next races
     let raceDateFormatter: DateFormatter = {
         let formatter = DateFormatter()
