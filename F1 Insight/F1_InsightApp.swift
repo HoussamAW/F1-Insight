@@ -12,12 +12,12 @@ import SwiftUI
 struct F1_InsightApp: App {
     @State private var showDice = false
     var body: some Scene {
-
+        
         // Main window
         WindowGroup(id: "main") {
-           ContentView()
-        }
-
+            ContentView(showDice: $showDice)
+        }.windowStyle(.plain)
+        
         // Second window for 3DObject
         WindowGroup(id: "car-detail") {
             RealityContentView(showDice: $showDice)
@@ -27,16 +27,19 @@ struct F1_InsightApp: App {
         WindowGroup(id: "car-stats") {
             CarStatsView()
                 .fixedSize()
-               
+            
         }.defaultSize(width: 250, height: 300)
         
         // window for Replay
         WindowGroup(id: "replayView") {
-           ReplayView()
+            ReplayView()
         }.windowStyle(.plain)
-          
-            
-            
-       
+        
+        
+        ImmersiveSpace(id: "GarageImmersive") {
+            ImmersiveView(showDice: $showDice)
+        }
+        
+        
     }
 }

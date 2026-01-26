@@ -15,22 +15,22 @@ struct TeamModel: Identifiable {
     var name: String
     var logo: String
     var carModel: String
-    var pilot1: String
-    var pilot2: String
+    var arModel: String
+   
     
 }
 
 let ecurieLogo = [
-    TeamModel(name: "RedBull Racing", logo: "RedBullRacing", carModel: "RedbullCar", pilot1: "", pilot2: ""),
-    TeamModel(name: "Ferrari", logo: "Ferrari", carModel: "FerrariCar", pilot1: "", pilot2: ""),
-    TeamModel(name: "Kick Sauber", logo: "KickSauber", carModel: "KickSauberCar", pilot1: "", pilot2: ""),
-    TeamModel(name: "Mclaren", logo: "Mclaren", carModel: "MclarenCar", pilot1: "", pilot2: ""),
-    TeamModel(name: "Williams", logo: "Williams", carModel: "WilliamCar", pilot1: "", pilot2: ""),
-    TeamModel(name: "Mercedes", logo: "Mercedes", carModel: "MercedesCar", pilot1: "", pilot2: ""),
-    TeamModel(name: "Aston Martin", logo: "AstonMartin", carModel: "AstonMartinCar", pilot1: "", pilot2: ""),
-    TeamModel(name: "Haas", logo: "Haas", carModel: "HaasCar", pilot1: "", pilot2: ""),
-    TeamModel(name: "Alpine", logo: "Alpine", carModel: "AlpineCar", pilot1: "", pilot2: ""),
-    TeamModel(name: "Racing Bulls", logo: "RacingBulls", carModel: "RacingBullCar", pilot1: "", pilot2: "")
+    TeamModel(name: "RedBull Racing", logo: "RedBullRacing", carModel: "RedbullCar", arModel: "RedBull"),
+    TeamModel(name: "Ferrari", logo: "Ferrari", carModel: "FerrariCar", arModel: "RedBull&"),
+    TeamModel(name: "Kick Sauber", logo: "KickSauber", carModel: "KickSauberCar",arModel: "RedBull"),
+    TeamModel(name: "Mclaren", logo: "Mclaren", carModel: "MclarenCar",arModel: "RedBullk"),
+    TeamModel(name: "Williams", logo: "Williams", carModel: "WilliamCar", arModel: "RedBull"),
+    TeamModel(name: "Mercedes", logo: "Mercedes", carModel: "MercedesCar", arModel: "RedBull"),
+    TeamModel(name: "Aston Martin", logo: "AstonMartin", carModel: "AstonMartinCar", arModel: "RedBull"),
+    TeamModel(name: "Haas", logo: "Haas", carModel: "HaasCar", arModel: "RedBull"),
+    TeamModel(name: "Alpine", logo: "Alpine", carModel: "AlpineCar", arModel: "RedBull"),
+    TeamModel(name: "Racing Bulls", logo: "RacingBulls", carModel: "RacingBullCar",arModel: "RedBull")
     
     ]
 

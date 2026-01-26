@@ -16,7 +16,7 @@ struct RealityContentView: View {
     @Environment(\.openWindow) private var openWindows
     @State private var scale: CGFloat = 1.0
     @State private var lastScale: CGFloat = 1.0
-
+    @State private var indexTeam = ecurieLogo[0]
     @Binding var showDice: Bool
     var body: some View {
         let rotateDrag = DragGesture()
@@ -38,29 +38,36 @@ struct RealityContentView: View {
             }
 
         ZStack {
-            Button {
+            Model3D(named: indexTeam.arModel) { model in
+                model.resizable().scaledToFit()
+            } placeholder: {
+                ProgressView()
+            }
+            .frame(width: 200, height: 200)
+            .rotation3DEffect(.degrees(rotationX), axis: (x: 1, y: 0, z: 0))
+            .rotation3DEffect(.degrees(rotationY), axis: (x: 0, y: 1, z: 0))
+            .scaleEffect(scale)
+            .gesture(rotateDrag.simultaneously(with: pinchZoom))
+            .onTapGesture {
                 openWindows(id: "car-stats")
-            } label: {
-                Model3D(named: "RedBull") { model in
-                    model
+            }
+            
+        HStack(spacing: 10) {
+            ForEach(ecurieLogo) { i in
+                Button {
+                    indexTeam = i
+                } label: {
+                    Image(i.logo)
                         .resizable()
-                        .scaledToFit()
-                } placeholder: {
-                    ProgressView()
-                }
-                .frame(width: 200, height: 200)
-                .rotation3DEffect(.degrees(rotationX), axis: (x: 1, y: 0, z: 0))
-                .rotation3DEffect(.degrees(rotationY), axis: (x: 0, y: 1, z: 0))
-                .scaleEffect(scale)
-                .gesture(
-                    rotateDrag.simultaneously(with: pinchZoom))
-            }.buttonStyle(.plain)
+                        .frame(width: 50,height: 50)
+                        .padding(10)
+                       
+                }.glassBackgroundEffect()
+
+            }.offset(y:150)
+        }.padding()
             
-            
-        }.padding(.bottom,70)
-            .frame(width: 300,height: 300)
-           
-       
+        }
     }
 }
 #Preview {
