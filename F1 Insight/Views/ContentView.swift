@@ -15,7 +15,7 @@ struct ContentView:View {
     @State private var immersiveOn = false
     var body: some View {
         if immersiveOn {
-            ImmersiveView(showDice: $showDice)
+            HomeView()
         } else {
             VStack(alignment: .center) {
                 
@@ -44,7 +44,6 @@ struct ContentView:View {
                     }
                 } label: {
                     Text("Enter in the lab")
-                    
                         .padding()
                         .font(.system(size: 30, weight: .bold))
                         .italic()

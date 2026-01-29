@@ -17,7 +17,7 @@ struct MenuItems: Identifiable {
 }
 
 let items = [
-    MenuItems(item: [1], images: "person.3.fill", menuName: "Teams", destination: AnyView(EmptyView())),
+    MenuItems(item: [1], images: "person.3.fill", menuName: "Teams", destination: AnyView(TeamsView())),
     MenuItems(item: [2], images: "flag.checkered.2.crossed", menuName: "Races", destination: AnyView(RacesView())),
     MenuItems(item: [3], images: "chart.xyaxis.line", menuName: "Insights", destination: AnyView(InsightsView()))
 ]
