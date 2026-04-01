@@ -10,9 +10,7 @@ import RealityKit
 
 struct TeamsView: View {
     @Environment(\.openWindow) private var openWindow
-    @State private var img: String = ecurieLogo.first?.arModel ?? "RedbullCar"
-    @State private var logos: String = ecurieLogo.first?.logo ?? "RedBullRacing"
-    @State private var teamName: String = ecurieLogo.first?.name ?? "Red Bull Racing"
+    @Environment(ViewModel.self) private var viewModel
 
 
     private let columns: [GridItem] = [
@@ -29,13 +27,13 @@ struct TeamsView: View {
 
                     HStack(alignment: .center, spacing: 24) {
                         HStack(spacing: 16) {
-                            Image(logos)
+                            Image(viewModel.selectedTeam.logo)
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 56, height: 56)
 
                             VStack(alignment: .leading, spacing: 4) {
-                                Text(teamName)
+                                Text(viewModel.selectedTeam.name)
                                     .font(.headline.weight(.semibold))
                                     .italic()
                             }
@@ -82,7 +80,7 @@ struct TeamsView: View {
                             Text("Selected Team")
                                 .font(.footnote)
                                 .foregroundStyle(.secondary)
-                            Text(teamName)
+                            Text(viewModel.selectedTeam.name)
                                 .font(.title2.weight(.semibold))
                                 .italic()
                             Text("Tap a team below to update this preview.")
@@ -92,7 +90,7 @@ struct TeamsView: View {
 
                         Spacer()
 
-                        Model3D(named: img, bundle: .main) { model in
+                        Model3D(named: viewModel.selectedTeam.arModel, bundle: .main) { model in
                             model
                                 .resizable()
                                 .scaledToFit()
@@ -106,12 +104,10 @@ struct TeamsView: View {
                     }
                     
                     LazyVGrid(columns: columns, spacing: 20) {
-                        ForEach(ecurieLogo) { logo in
+                        ForEach(viewModel.teams) { logo in
                             Button {
                                 withAnimation(.spring(response: 0.35, dampingFraction: 0.8)) {
-                                    img = logo.arModel
-                                    logos = logo.logo
-                                    teamName = logo.name
+                                    viewModel.selectTeam(logo)
                                 }
                             } label: {
                                 VStack(alignment: .leading, spacing: 10) {
@@ -154,8 +150,4 @@ struct TeamsView: View {
             }
         }
     }
-}
-
-#Preview {
-    TeamsView()
 }

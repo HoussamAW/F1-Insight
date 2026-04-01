@@ -8,15 +8,14 @@ import SwiftUI
 import RealityKit
 
 struct RealityContentView: View {
+    @Environment(ViewModel.self) private var viewModel
     @State private var pitch: Double = 0
     @State private var yaw: Double = 0
     @State private var lastPitch: Double = 0
     @State private var lastYaw: Double = 0
     @State private var scale: CGFloat = 1.0
     @State private var lastScale: CGFloat = 1.0
-    @State private var selectedTeam = ecurieLogo
-    @State private var index = 0
-    @Binding var showDice: Bool
+
     var body: some View {
         let rotateDrag = DragGesture()
             .onChanged { value in
@@ -37,7 +36,7 @@ struct RealityContentView: View {
             }
 
         ZStack {
-            Model3D(named: selectedTeam[index].arModel) { model in
+            Model3D(named: viewModel.selectedTeam.arModel, bundle: .main) { model in
                 model
                     .resizable()
                     .scaledToFit()
@@ -51,7 +50,4 @@ struct RealityContentView: View {
             .gesture(rotateDrag.simultaneously(with: pinchZoom))
         }
     }
-}
-#Preview {
-    RealityContentView(showDice: .constant(false))
 }

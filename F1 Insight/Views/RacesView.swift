@@ -63,9 +63,3 @@ struct RacesView: View {
             }.padding()
         }
     }
-
-
-#Preview {
-    RacesView()
-        
-}
