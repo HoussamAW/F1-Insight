@@ -26,6 +26,8 @@ struct F1_InsightApp: App {
                 .environment(viewModel)
         }
         .windowStyle(.plain)
+        .defaultLaunchBehavior(.suppressed)
+            .restorationBehavior(.disabled)
                 
         // window for Replay
         WindowGroup(id: "replayView") {
@@ -33,6 +35,8 @@ struct F1_InsightApp: App {
                 .environment(viewModel)
         }
         .windowStyle(.plain)
+        .defaultLaunchBehavior(.suppressed)
+            .restorationBehavior(.disabled)
         
     }
 }
