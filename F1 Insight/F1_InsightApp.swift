@@ -15,21 +15,14 @@ struct F1_InsightApp: App {
         
         // Main window
         WindowGroup(id: "main") {
-            ContentView(showDice: $showDice)
+            ContentView()
         }.windowStyle(.plain)
         
         // Second window for 3DObject
         WindowGroup(id: "car-detail") {
             RealityContentView(showDice: $showDice)
         }.windowStyle(.plain)
-        
-        // Third window for Stats
-        WindowGroup(id: "car-stats") {
-            CarStatsView()
-                .fixedSize()
-            
-        }.defaultSize(width: 250, height: 300)
-        
+                
         // window for Replay
         WindowGroup(id: "replayView") {
             ReplayView()

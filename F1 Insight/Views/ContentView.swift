@@ -10,8 +10,8 @@ import SwiftUI
 import RealityKit
 
 struct ContentView: View {
-    @Environment(\.scenePhase) private var scenePhase
-    @Binding var showDice: Bool
+//    @Environment(\.scenePhase) private var scenePhase
+//    @Binding var showDice: Bool
     @State private var showHomeView = false
 
     var body: some View {
@@ -43,14 +43,14 @@ struct ContentView: View {
                 }
             }
         }
-        .onChange(of: scenePhase) { _,newPhase in
-            if newPhase == .background {
-                showHomeView = false
-            }
-        }
+//        .onChange(of: scenePhase) { _,newPhase in
+//            if newPhase == .background {
+//                showHomeView = false
+//            }
+//        }
     }
 }
 
 #Preview(windowStyle: .plain) {
-    ContentView(showDice: .constant(false))
+    ContentView(/*showDice: .constant(false)*/)
 }

@@ -48,9 +48,6 @@ struct RealityContentView: View {
             .rotation3DEffect(.degrees(rotationY), axis: (x: 0, y: 1, z: 0))
             .scaleEffect(scale)
             .gesture(rotateDrag.simultaneously(with: pinchZoom))
-            .onTapGesture {
-                openWindows(id: "car-stats")
-            }
             
 //        HStack(spacing: 10) {
 //            ForEach(ecurieLogo) { i in
