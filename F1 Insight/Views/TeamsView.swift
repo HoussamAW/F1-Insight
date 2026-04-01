@@ -6,14 +6,13 @@
 //
 
 import SwiftUI
+import RealityKit
 
 struct TeamsView: View {
     @Environment(\.openWindow) private var openWindow
-    @State private var img: String = ecurieLogo.first?.carModel ?? "RedbullCar"
+    @State private var img: String = ecurieLogo.first?.arModel ?? "RedbullCar"
     @State private var logos: String = ecurieLogo.first?.logo ?? "RedBullRacing"
     @State private var teamName: String = ecurieLogo.first?.name ?? "Red Bull Racing"
-//    @State private var pilotImg1: String = ecurieLogo.first?.pilot1 ?? ""
-//    @State private var pilotImg2: String = ecurieLogo.first?.pilot2 ?? ""
 
 
     private let columns: [GridItem] = [
@@ -39,23 +38,6 @@ struct TeamsView: View {
                                 Text(teamName)
                                     .font(.headline.weight(.semibold))
                                     .italic()
-
-//                                HStack(spacing: 8) {
-//                                    if !pilotImg1.isEmpty {
-//                                        Image(pilotImg1)
-//                                            .resizable()
-//                                            .scaledToFit()
-//                                            .frame(width: 32, height: 32)
-//                                            .clipShape(Circle())
-//                                    }
-//                                    if !pilotImg2.isEmpty {
-//                                        Image(pilotImg2)
-//                                            .resizable()
-//                                            .scaledToFit()
-//                                            .frame(width: 32, height: 32)
-//                                            .clipShape(Circle())
-//                                    }
-//                                }
                             }
                         }
                         .padding(.horizontal, 20)
@@ -110,22 +92,26 @@ struct TeamsView: View {
 
                         Spacer()
 
-                        Image(img)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(maxWidth: 420, maxHeight: 220)
-                            .glassBackgroundEffect()
+                        Model3D(named: img, bundle: .main) { model in
+                            model
+                                .resizable()
+                                .scaledToFit()
+                                .rotation3DEffect(.degrees(90), axis: (x: 0, y: 1, z: 0))
+                        } placeholder: {
+                            ProgressView()
+                        }
+                        .frame(maxWidth: 420, maxHeight: 220)
+                     
+                        .glassBackgroundEffect()
                     }
                     
                     LazyVGrid(columns: columns, spacing: 20) {
                         ForEach(ecurieLogo) { logo in
                             Button {
                                 withAnimation(.spring(response: 0.35, dampingFraction: 0.8)) {
-                                    img = logo.carModel
+                                    img = logo.arModel
                                     logos = logo.logo
                                     teamName = logo.name
-//                                    pilotImg1 = logo.pilot1
-//                                    pilotImg2 = logo.pilot2
                                 }
                             } label: {
                                 VStack(alignment: .leading, spacing: 10) {
@@ -141,25 +127,6 @@ struct TeamsView: View {
                                     Text(logo.name)
                                         .font(.subheadline.weight(.semibold))
                                         .lineLimit(1)
-
-//                                    HStack(spacing: 6) {
-//                                        if !logo.pilot1.isEmpty {
-//                                            Image(logo.pilot1)
-//                                                .resizable()
-//                                                .scaledToFill()
-//                                                .frame(width: 22, height: 22)
-//                                                .clipShape(Circle())
-//                                        }
-//                                        if !logo.pilot2.isEmpty {
-//                                            Image(logo.pilot2)
-//                                                .resizable()
-//                                                .scaledToFill()
-//                                                .frame(width: 22, height: 22)
-//                                                .clipShape(Circle())
-//                                        }
-//
-//                                        Spacer()
-//                                    }
 
                                     Text("Tap to explore this car.")
                                         .font(.caption2)

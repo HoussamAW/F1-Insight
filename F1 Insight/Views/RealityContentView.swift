@@ -6,27 +6,26 @@
 //
 import SwiftUI
 import RealityKit
-import RealityKitContent
 
 struct RealityContentView: View {
-    @State private var rotationX: Double = 0
-    @State private var rotationY: Double = 0
-    @State private var lastRotationX: Double = 0
-    @State private var lastRotationY: Double = 0
-    @Environment(\.openWindow) private var openWindows
+    @State private var pitch: Double = 0
+    @State private var yaw: Double = 0
+    @State private var lastPitch: Double = 0
+    @State private var lastYaw: Double = 0
     @State private var scale: CGFloat = 1.0
     @State private var lastScale: CGFloat = 1.0
-    @State private var indexTeam = ecurieLogo[0]
+    @State private var selectedTeam = ecurieLogo
+    @State private var index = 0
     @Binding var showDice: Bool
     var body: some View {
         let rotateDrag = DragGesture()
             .onChanged { value in
-                rotationY = lastRotationY + value.translation.width
-                rotationX = lastRotationX - value.translation.height
+                yaw = lastYaw + value.translation.width
+                pitch = lastPitch - value.translation.height
             }
             .onEnded { _ in
-                lastRotationX = rotationX
-                lastRotationY = rotationY
+                lastPitch = pitch
+                lastYaw = yaw
             }
 
         let pinchZoom = MagnificationGesture()
@@ -38,36 +37,21 @@ struct RealityContentView: View {
             }
 
         ZStack {
-            Model3D(named: indexTeam.arModel) { model in
-                model.resizable().scaledToFit()
+            Model3D(named: selectedTeam[index].arModel) { model in
+                model
+                    .resizable()
+                    .scaledToFit()
             } placeholder: {
                 ProgressView()
             }
             .frame(width: 200, height: 200)
-            .rotation3DEffect(.degrees(rotationX), axis: (x: 1, y: 0, z: 0))
-            .rotation3DEffect(.degrees(rotationY), axis: (x: 0, y: 1, z: 0))
+            .rotation3DEffect(.degrees(pitch), axis: (x: 1, y: 0, z: 0))
+            .rotation3DEffect(.degrees(yaw), axis: (x: 0, y: 1, z: 0))
             .scaleEffect(scale)
             .gesture(rotateDrag.simultaneously(with: pinchZoom))
-            
-//        HStack(spacing: 10) {
-//            ForEach(ecurieLogo) { i in
-//                Button {
-//                    indexTeam = i
-//                } label: {
-//                    Image(i.logo)
-//                        .resizable()
-//                        .frame(width: 50,height: 50)
-//                        .padding(10)
-//                       
-//                }.glassBackgroundEffect()
-//
-//            }.offset(y:150)
-//        }.padding()
-            
         }
     }
 }
 #Preview {
     RealityContentView(showDice: .constant(false))
-      
 }

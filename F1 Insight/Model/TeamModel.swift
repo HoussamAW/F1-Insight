@@ -22,15 +22,15 @@ struct TeamModel: Identifiable {
 
 let ecurieLogo = [
     TeamModel(name: "RedBull Racing", logo: "RedBullRacing", carModel: "RedbullCar", arModel: "RedBull"),
-    TeamModel(name: "Ferrari", logo: "Ferrari", carModel: "FerrariCar", arModel: "RedBull&"),
+    TeamModel(name: "Ferrari", logo: "Ferrari", carModel: "FerrariCar", arModel: "Ferrari"),
     TeamModel(name: "Kick Sauber", logo: "KickSauber", carModel: "KickSauberCar",arModel: "RedBull"),
-    TeamModel(name: "Mclaren", logo: "Mclaren", carModel: "MclarenCar",arModel: "RedBullk"),
+    TeamModel(name: "Mclaren", logo: "Mclaren", carModel: "MclarenCar",arModel: "Mclaren"),
     TeamModel(name: "Williams", logo: "Williams", carModel: "WilliamCar", arModel: "RedBull"),
-    TeamModel(name: "Mercedes", logo: "Mercedes", carModel: "MercedesCar", arModel: "RedBull"),
+    TeamModel(name: "Mercedes", logo: "Mercedes", carModel: "MercedesCar", arModel: "Mercedes"),
     TeamModel(name: "Aston Martin", logo: "AstonMartin", carModel: "AstonMartinCar", arModel: "RedBull"),
     TeamModel(name: "Haas", logo: "Haas", carModel: "HaasCar", arModel: "RedBull"),
-    TeamModel(name: "Alpine", logo: "Alpine", carModel: "AlpineCar", arModel: "RedBull"),
-    TeamModel(name: "Racing Bulls", logo: "RacingBulls", carModel: "RacingBullCar",arModel: "RedBull")
+    TeamModel(name: "Alpine", logo: "Alpine", carModel: "AlpineCar", arModel: "Alpine"),
+    TeamModel(name: "Racing Bulls", logo: "RacingBulls", carModel: "RacingBullCar",arModel: "RacingBull")
     
     ]
 
