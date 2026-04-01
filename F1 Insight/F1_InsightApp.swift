@@ -35,11 +35,5 @@ struct F1_InsightApp: App {
             ReplayView()
         }.windowStyle(.plain)
         
-        
-        ImmersiveSpace(id: "GarageImmersive") {
-            ImmersiveView(showDice: $showDice)
-        }
-        
-        
     }
 }

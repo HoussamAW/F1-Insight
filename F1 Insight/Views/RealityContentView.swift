@@ -52,20 +52,20 @@ struct RealityContentView: View {
                 openWindows(id: "car-stats")
             }
             
-        HStack(spacing: 10) {
-            ForEach(ecurieLogo) { i in
-                Button {
-                    indexTeam = i
-                } label: {
-                    Image(i.logo)
-                        .resizable()
-                        .frame(width: 50,height: 50)
-                        .padding(10)
-                       
-                }.glassBackgroundEffect()
-
-            }.offset(y:150)
-        }.padding()
+//        HStack(spacing: 10) {
+//            ForEach(ecurieLogo) { i in
+//                Button {
+//                    indexTeam = i
+//                } label: {
+//                    Image(i.logo)
+//                        .resizable()
+//                        .frame(width: 50,height: 50)
+//                        .padding(10)
+//                       
+//                }.glassBackgroundEffect()
+//
+//            }.offset(y:150)
+//        }.padding()
             
         }
     }

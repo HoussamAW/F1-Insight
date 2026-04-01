@@ -8,53 +8,49 @@
 
 import SwiftUI
 import RealityKit
-struct ContentView:View {
+
+struct ContentView: View {
+    @Environment(\.scenePhase) private var scenePhase
     @Binding var showDice: Bool
-    @Environment(\.openImmersiveSpace) private var openImmersiveSpace
-    @Environment(\.dismissImmersiveSpace) private var dismissImmersiveSpace
-    @State private var immersiveOn = false
+    @State private var showHomeView = false
+
     var body: some View {
-        if immersiveOn {
-            HomeView()
-        } else {
-            VStack(alignment: .center) {
-                
-                Image("F1.svg")
-                    .resizable()
-                    .frame(width:700,height:170)
-                Text("Insights")
-                    .font(.system(size: 50, weight: .bold))
-                    .italic()
-                    .offset(x:170)
-                    .padding(.bottom,150)
-                
-                
-                
-                Button {
-                    Task {
-                        if immersiveOn {
-                            await dismissImmersiveSpace()
-                            immersiveOn = false
-                        } else {
-                            let r = await openImmersiveSpace(id: "GarageImmersive")
-                            if r == .opened {
-                                immersiveOn = true
-                            }
-                        }
-                    }
-                } label: {
-                    Text("Enter in the lab")
-                        .padding()
-                        .font(.system(size: 30, weight: .bold))
+        Group {
+            if showHomeView {
+                HomeView()
+            } else {
+                VStack(alignment: .center) {
+                    Image("F1.svg")
+                        .resizable()
+                        .frame(width: 700, height: 170)
+
+                    Text("Insights")
+                        .font(.system(size: 50, weight: .bold))
                         .italic()
-                        .glassBackgroundEffect()
-                }  .buttonStyle(.plain)
-                
+                        .offset(x: 170)
+                        .padding(.bottom, 150)
+
+                    Button {
+                        showHomeView = true
+                    } label: {
+                        Text("Enter in the lab")
+                            .padding()
+                            .font(.system(size: 30, weight: .bold))
+                            .italic()
+                            .glassBackgroundEffect()
+                    }
+                    .buttonStyle(.plain)
+                }
+            }
+        }
+        .onChange(of: scenePhase) { _,newPhase in
+            if newPhase == .background {
+                showHomeView = false
             }
         }
     }
 }
 
 #Preview(windowStyle: .plain) {
-  ContentView(showDice: .constant(false))
+    ContentView(showDice: .constant(false))
 }
