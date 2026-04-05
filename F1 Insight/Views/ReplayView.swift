@@ -10,8 +10,8 @@ import AVKit
 
 struct ReplayView: View {
     var body: some View {
-        if let url = URL(string: "") { // video URL will be added later for security/privacy reasons.
-            WebView(url: url)
+        if url != nil  { 
+            WebView(url: url!)
                 .ignoresSafeArea()
         } else {
           Image("replaySoon")
