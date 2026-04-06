@@ -10,15 +10,10 @@ import AVKit
 
 struct ReplayView: View {
     var body: some View {
-        if let url {
+        if let url = URL(string: "URL_HERE") {
             WebView(url: url)
                 .ignoresSafeArea()
-        } else {
-          Image("replaySoon")
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .cornerRadius(20)
-                .padding()
         }
     }
 }
+
