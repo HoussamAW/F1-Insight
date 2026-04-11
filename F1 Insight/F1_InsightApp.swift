@@ -21,11 +21,11 @@ struct F1_InsightApp: App {
         .windowStyle(.plain)
         
         // Second window for 3DObject
-        WindowGroup(id: "car-detail") {
+        ImmersiveSpace(id: "car-detail") {
             RealityContentView()
                 .environment(viewModel)
         }
-        .windowStyle(.plain)
+//        .windowStyle(.plain)
         .defaultLaunchBehavior(.suppressed)
             .restorationBehavior(.disabled)
                 

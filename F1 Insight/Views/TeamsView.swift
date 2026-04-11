@@ -9,7 +9,8 @@ import SwiftUI
 import RealityKit
 
 struct TeamsView: View {
-    @Environment(\.openWindow) private var openWindow
+//    @Environment(\.openWindow) private var openWindow
+    @Environment(\.openImmersiveSpace) private var openImmersiveSpace
     @Environment(ViewModel.self) private var viewModel
 
 
@@ -46,7 +47,10 @@ struct TeamsView: View {
                         Spacer()
 
                         Button {
-                            openWindow(id: "car-detail")
+                            Task {
+                                await openImmersiveSpace(id: "car-detail")
+                            }
+                           
                         } label: {
                             HStack(spacing: 12) {
                                 Image(systemName: "cube.transparent")
@@ -94,7 +98,9 @@ struct TeamsView: View {
                             model
                                 .resizable()
                                 .scaledToFit()
+                                .frame(width: 80,height: 80)
                                 .rotation3DEffect(.degrees(90), axis: (x: 0, y: 1, z: 0))
+                                .offset(y:-10)
                         } placeholder: {
                             ProgressView()
                         }
